@@ -1,170 +1,131 @@
-import dill
+import json
 import os
-import glob
-import re
-import shutil
-import xml.etree.ElementTree as ET
+import dill
+from collections import defaultdict
 
-def filter_drugbank_data(med_voc, drugbank_dir, output_dir):
+
+def filter_and_save_drugbank_data(med_voc, drugbank_json_path, output_dir):
     """
-    从 DrugBank 数据集中筛选符合条件的药物：
-    - 仅保留 `approved` 状态的药物
-    - 仅匹配 `med_voc` 中的 ATC-4 编码
-    - 只保留指定字段
-    - 以 `med_voc.word2idx[ATC-4]` 作为文件名保存
-
-    参数：
-    voc_path (str): med_voc 词汇表的路径
-    drugbank_dir (str): DrugBank XML 文件存放的目录
-    output_dir (str): 处理后数据的存放目录
+    从 DrugBank JSON 数据集中筛选药物并保存，确保准确的计数
     """
-
-    # 计算药物总数
+    # 计算词汇表中的药物总数
     num_medications = len(med_voc.word2idx)
-    print(f"The number of medications in {dataset} med_voc:", num_medications)
+    print(f"The number of medications in med_voc:", num_medications)
 
     # 确保输出目录存在
     os.makedirs(output_dir, exist_ok=True)
 
-    # 遍历 DrugBank 目录中的所有 XML 文件
-    drugbank_files = glob.glob(os.path.join(drugbank_dir, "*.txt"))
-    matched_files = 0
+    # 读取 DrugBank JSON 文件
+    with open(drugbank_json_path, 'r') as f:
+        drugbank_data = json.load(f)
 
-    for file in drugbank_files:
-        try:
-            tree = ET.parse(file)
-            root = tree.getroot()
+    # 用于存储匹配结果的字典
+    drug_to_save = {}  # key: atc5_code, value: drug_info
+    atc4_to_drugs = defaultdict(set)  # key: atc4, value: set of drug_ids
 
-            # 仅保留 'approved' 药物
-            drug_groups = root.findall(".//groups/group")
-            if not any(group.text == "approved" for group in drug_groups):
-                continue
+    # 为每个药物选择一个合适的ATC-5编码
+    for drug_id, drug_info in drugbank_data.items():
+        if drug_info.get('group') != 'approved':
+            continue
 
-            # 获取 ATC 代码并筛选 ATC-4 级别
-            atc_codes = root.findall(".//atc-codes/atc-code")
-            drug_atc4 = set()
+        atc_codes = sorted(drug_info.get('atc_codes', []))  # 排序以确保一致性
+        selected_atc5 = None
 
-            for atc in atc_codes:
-                atc_code = atc.attrib.get('code', '')  # 提取 ATC 代码
-                if len(atc_code) >= 7:  # 至少是 ATC-4 级别
-                    atc4_code = atc_code[:4]  # 取 ATC-4 编码
-                    drug_atc4.add(atc4_code)
+        # 找出第一个匹配的ATC-5编码
+        for atc_code in atc_codes:
+            if len(atc_code) >= 7:  # 确保长度足够
+                atc4_code = atc_code[:4]
+                if atc4_code in med_voc.word2idx:
+                    selected_atc5 = atc_code[:7]
+                    atc4_to_drugs[atc4_code].add(drug_id)
+                    drug_to_save[selected_atc5] = drug_info
+                    break  # 找到第一个匹配就停止
 
-            # 判断当前药物是否符合 med_voc 中的 ATC-4
-            matched_atc4 = drug_atc4.intersection(med_voc.word2idx.keys())
+    # 保存匹配到的药物信息
+    saved_count = 0
+    for atc5_code, drug_info in drug_to_save.items():
+        file_name = f"{atc5_code}.json"
+        file_path = os.path.join(output_dir, file_name)
 
-            if matched_atc4:
-                # 仅保留以下字段
-                selected_fields = [
-                    "drugbank-id", "name", "description", "indication", "pharmacodynamics",
-                    "mechanism-of-action", "toxicity", "metabolism", "absorption", "classification",
-                    "synonyms", "atc-codes", "drug-interactions", "sequences", "enzymes", "pathways",
-                    "reactions"
-                ]
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(drug_info, f, ensure_ascii=False, indent=2)
+        saved_count += 1
 
-                selected_data = ET.Element("drug")
+    # 创建汇总文件
+    summary_file = os.path.join(output_dir, "atc_codes_summary.json")
+    summary_data = {
+        "total_matched_drugs": saved_count,
+        "total_atc4_codes": len(atc4_to_drugs),
+        "atc4_statistics": {
+            atc4: len(drugs)
+            for atc4, drugs in atc4_to_drugs.items()
+        },
+        "file_count": saved_count
+    }
 
-                for field in selected_fields:
-                    element = root.find(f".//{field}")
-                    if element is not None:
-                        selected_data.append(element)
+    with open(summary_file, 'w', encoding='utf-8') as f:
+        json.dump(summary_data, f, ensure_ascii=False, indent=2)
 
-                # 处理 <targets>，仅保留 <name> 和 <actions>
-                targets_element = root.find(".//targets")
-                if targets_element is not None:
-                    new_targets = ET.Element("targets")
-                    for target in targets_element.findall(".//target"):
-                        target_name = target.find(".//name")
-                        actions = target.find(".//actions")
-                        new_target = ET.Element("target")
-                        if target_name is not None:
-                            new_target.append(target_name)
-                        if actions is not None:
-                            new_target.append(actions)
-                        if len(new_target) > 0:
-                            new_targets.append(new_target)
-                    selected_data.append(new_targets)
+    print(f"筛选完成，共保存了 {saved_count} 个唯一药物信息文件")
+    print(f"涉及 {len(atc4_to_drugs)} 个不同的ATC-4编码")
+    return saved_count, len(atc4_to_drugs)
 
 
-                # 获取 ATC-4 作为文件名
-                for atc4 in matched_atc4:
-                    file_name = f"{med_voc.word2idx[atc4]}.txt"  # 用序列号作为文件名
-                    file_path = os.path.join(output_dir, file_name)
-
-                    with open(file_path, "w", encoding="utf-8") as f:
-                        f.write(ET.tostring(selected_data, encoding="utf-8").decode("utf-8"))
-
-                matched_files += 1
-
-        except ET.ParseError:
-            print(f"解析 XML 失败，跳过文件：{file}")  # 处理格式异常的文件
-
-    print(f"筛选完成，共匹配到 {matched_files} 个 DrugBank 文件")
-    print(f"筛选后的文件存放在 {output_dir} 目录下")
-
-
-def calculate_match_percentage(med_voc, drugbank_dir):
+def calculate_match_statistics(med_voc, drugbank_json_path):
     """
-    计算 med_voc 中的 ATC-4 代码在 DrugBank 数据集中匹配的比例。
-
-    参数：
-    voc_path (str): med_voc 词汇表的路径
-    drugbank_dir (str): DrugBank XML 文件存放的目录
-
-    返回：
-    float: 匹配比例（匹配数 / 总数）
+    计算匹配统计信息
     """
-
-    # 计算 med_voc 中 ATC-4 编码的总数
     total_medications = len(med_voc.word2idx)
-    matched_medications = set()
+    matched_drugs = set()
+    matched_atc4 = set()
 
-    # 遍历 DrugBank XML
-    drugbank_files = glob.glob(os.path.join(drugbank_dir, "*.txt"))
+    with open(drugbank_json_path, 'r') as f:
+        drugbank_data = json.load(f)
 
-    for file in drugbank_files:
-        try:
-            tree = ET.parse(file)
-            root = tree.getroot()
+    # 使用字典来跟踪每个药物的ATC5编码
+    drug_atc5_mapping = {}
 
-            # 仅保留 'approved' 药物
-            drug_groups = root.findall(".//groups/group")
-            if not any(group.text == "approved" for group in drug_groups):
-                continue
+    for drug_id, drug_info in drugbank_data.items():
+        if drug_info.get('group') != 'approved':
+            continue
 
-            # 获取 ATC-4 级别的代码
-            atc_codes = root.findall(".//atc-codes/atc-code")
-            for atc in atc_codes:
-                atc_code = atc.attrib.get('code', '')
-                if len(atc_code) >= 4:
-                    atc4_code = atc_code[:4]
-                    if atc4_code in med_voc.word2idx:
-                        matched_medications.add(atc4_code)
+        atc_codes = sorted(drug_info.get('atc_codes', []))  # 排序以确保一致性
+        for atc_code in atc_codes:
+            if len(atc_code) >= 7:
+                atc4_code = atc_code[:4]
+                if atc4_code in med_voc.word2idx:
+                    matched_drugs.add(drug_id)
+                    matched_atc4.add(atc4_code)
+                    drug_atc5_mapping[drug_id] = atc_code[:7]
+                    break  # 只取第一个匹配的ATC编码
 
-        except ET.ParseError:
-            print(f"解析 XML 失败，跳过文件：{file}")
-
-    match_ratio = len(matched_medications) / total_medications if total_medications > 0 else 0
-    print(f"匹配的药物数: {len(matched_medications)} / {total_medications}")
-    return match_ratio
+    print(f"匹配的唯一药物数量: {len(matched_drugs)}")
+    print(f"匹配的ATC-4编码数: {len(matched_atc4)} / {total_medications}")
+    return len(matched_drugs), len(matched_atc4)
 
 
+# 主程序
+if __name__ == "__main__":
+    for dataset in ['mimic-iii', 'mimic-iv']:
+        print("-" * 10, f"Processing dataset: {dataset}", "-" * 10)
+        voc_path = f'/home/zyh0023/code/Z_RecDrug/data/output/{dataset}/voc_final.pkl'
+        voc = dill.load(open(voc_path, 'rb'))
+        med_voc = voc['med_voc']
 
-# 加载 voc_final.pkl 中的 med_voc 数据
-# 开始
-for dataset in ['mimic-iii', 'mimic-iv']:
-    print("-" * 10, "processing dataset: ", dataset, "-" * 10)
-    voc_path = f'/home/zyh0023/code/Z_RecDrug/data/output/{dataset}/voc_final.pkl'
-    voc = dill.load(open(voc_path, 'rb'))
-    med_voc = voc['med_voc']  # 获取 med_voc 数据
+        drugbank_json_path = "./drugbank_all_drugs.json"
+        output_dir = f"/home/zyh0023/code/Z_RecDrug/data/drugs_info/{dataset}/"
 
-    # 定义 DrugBank XML 路径和输出路径
-    drugbank_dir = "/home/zyh0023/code/Z_RecDrug/data/drugbank_output/"
-    output_dir = f"/home/zyh0023/code/Z_RecDrug/data/drugs_info/{dataset}/"
+        # 筛选并保存药物数据
+        saved_count, atc4_count = filter_and_save_drugbank_data(med_voc, drugbank_json_path, output_dir)
 
-    # 筛选 DrugBank 数据
-    filter_drugbank_data(med_voc, drugbank_dir, output_dir)
+        # 验证实际保存的文件数量
+        actual_files = [f for f in os.listdir(output_dir) if f.endswith('.json') and f != 'atc_codes_summary.json']
+        print(f"\n文件验证:")
+        print(f"计数的文件数量: {saved_count}")
+        print(f"实际的文件数量: {len(actual_files)}")
 
-    # 计算匹配度
-    match_percentage = calculate_match_percentage(med_voc, drugbank_dir)
-    print(f"匹配度: {match_percentage:.2%}")
+        # 计算详细统计信息
+        unique_drugs, matched_atc4_count = calculate_match_statistics(med_voc, drugbank_json_path)
+        print(f"\n{dataset} 详细统计信息:")
+        print(f"匹配的唯一药物数: {unique_drugs}")
+        print(f"匹配的ATC-4编码数: {matched_atc4_count}")
