@@ -1,0 +1,913 @@
+﻿{
+	"network": {
+		"items": [
+			{
+				"id": 1,
+				"label": "病人2",
+				"x": 0.3081,
+				"y": 0.3771,
+				"cluster": 1,
+				"weights": {
+					"Links": 8.0000,
+					"Total link strength": 43.0000,
+					"User-defined weight": 59.0000
+				}
+			},
+			{
+				"id": 2,
+				"label": "人口老龄化",
+				"x": 0.5237,
+				"y": 0.4593,
+				"cluster": 2,
+				"weights": {
+					"Links": 15.0000,
+					"Total link strength": 90.0000,
+					"User-defined weight": 183.0000
+				}
+			},
+			{
+				"id": 3,
+				"label": "公共空间",
+				"x": 0.4180,
+				"y": 0.6133,
+				"cluster": 3,
+				"weights": {
+					"Links": 14.0000,
+					"Total link strength": 101.9999,
+					"User-defined weight": 128.0000
+				}
+			},
+			{
+				"id": 4,
+				"label": "养老服务",
+				"x": 0.5529,
+				"y": 0.3823,
+				"cluster": 2,
+				"weights": {
+					"Links": 12.0000,
+					"Total link strength": 32.9998,
+					"User-defined weight": 66.0000
+				}
+			},
+			{
+				"id": 5,
+				"label": "城市更新",
+				"x": 0.3273,
+				"y": 0.4503,
+				"cluster": 3,
+				"weights": {
+					"Links": 11.0000,
+					"Total link strength": 50.0000,
+					"User-defined weight": 66.0000
+				}
+			},
+			{
+				"id": 6,
+				"label": "居家养老",
+				"x": 0.5912,
+				"y": 0.4444,
+				"cluster": 2,
+				"weights": {
+					"Links": 15.0000,
+					"Total link strength": 130.9999,
+					"User-defined weight": 190.0000
+				}
+			},
+			{
+				"id": 7,
+				"label": "数字鸿沟",
+				"x": 0.5688,
+				"y": 0.2222,
+				"cluster": 4,
+				"weights": {
+					"Links": 11.0000,
+					"Total link strength": 106.0000,
+					"User-defined weight": 160.0000
+				}
+			},
+			{
+				"id": 8,
+				"label": "景观设计",
+				"x": 0.4572,
+				"y": 0.3377,
+				"cluster": 5,
+				"weights": {
+					"Links": 10.0000,
+					"Total link strength": 48.9999,
+					"User-defined weight": 57.0000
+				}
+			},
+			{
+				"id": 9,
+				"label": "智慧养老",
+				"x": 0.5137,
+				"y": 0.3430,
+				"cluster": 2,
+				"weights": {
+					"Links": 12.0000,
+					"Total link strength": 41.9999,
+					"User-defined weight": 75.0000
+				}
+			},
+			{
+				"id": 10,
+				"label": "用户体验",
+				"x": 0.2826,
+				"y": 0.0770,
+				"cluster": 1,
+				"weights": {
+					"Links": 10.0000,
+					"Total link strength": 42.0000,
+					"User-defined weight": 57.0000
+				}
+			},
+			{
+				"id": 11,
+				"label": "积极老龄化",
+				"x": 0.5228,
+				"y": 0.1365,
+				"cluster": 4,
+				"weights": {
+					"Links": 11.0000,
+					"Total link strength": 47.9999,
+					"User-defined weight": 97.0000
+				}
+			},
+			{
+				"id": 12,
+				"label": "老年人",
+				"x": 0.2589,
+				"y": 0.2021,
+				"cluster": 1,
+				"weights": {
+					"Links": 18.0000,
+					"Total link strength": 214.9998,
+					"User-defined weight": 419.0000
+				}
+			},
+			{
+				"id": 13,
+				"label": "老年群体",
+				"x": 0.4936,
+				"y": 0.2380,
+				"cluster": 4,
+				"weights": {
+					"Links": 11.0000,
+					"Total link strength": 63.9999,
+					"User-defined weight": 117.0000
+				}
+			},
+			{
+				"id": 14,
+				"label": "老旧小区",
+				"x": 0.2881,
+				"y": 0.5433,
+				"cluster": 3,
+				"weights": {
+					"Links": 12.0000,
+					"Total link strength": 131.0000,
+					"User-defined weight": 158.0000
+				}
+			},
+			{
+				"id": 15,
+				"label": "老旧社区",
+				"x": 0.3523,
+				"y": 0.5582,
+				"cluster": 3,
+				"weights": {
+					"Links": 11.0000,
+					"Total link strength": 66.9999,
+					"User-defined weight": 83.0000
+				}
+			},
+			{
+				"id": 16,
+				"label": "老龄化",
+				"x": 0.5606,
+				"y": 0.5608,
+				"cluster": 2,
+				"weights": {
+					"Links": 17.0000,
+					"Total link strength": 148.9999,
+					"User-defined weight": 253.0000
+				}
+			},
+			{
+				"id": 17,
+				"label": "设计策略",
+				"x": 0.1709,
+				"y": 0.3150,
+				"cluster": 1,
+				"weights": {
+					"Links": 13.0000,
+					"Total link strength": 46.9999,
+					"User-defined weight": 68.0000
+				}
+			},
+			{
+				"id": 18,
+				"label": "病人1",
+				"x": 0.3588,
+				"y": 0.1986,
+				"cluster": 1,
+				"weights": {
+					"Links": 19.0000,
+					"Total link strength": 457.9999,
+					"User-defined weight": 1131.0000
+				}
+			},
+			{
+				"id": 19,
+				"label": "适老化改造",
+				"x": 0.4102,
+				"y": 0.4681,
+				"cluster": 3,
+				"weights": {
+					"Links": 17.0000,
+					"Total link strength": 185.9999,
+					"User-defined weight": 300.0000
+				}
+			},
+			{
+				"id": 20,
+				"label": "适老化设计",
+				"x": 0.2448,
+				"y": 0.3097,
+				"cluster": 1,
+				"weights": {
+					"Links": 19.0000,
+					"Total link strength": 167.9999,
+					"User-defined weight": 422.0000
+				}
+			}
+		],
+		"links": [
+			{
+				"source_id": 1,
+				"target_id": 9,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 1,
+				"target_id": 10,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 1,
+				"target_id": 12,
+				"strength": 5.0000
+			},
+			{
+				"source_id": 1,
+				"target_id": 13,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 1,
+				"target_id": 16,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 1,
+				"target_id": 17,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 1,
+				"target_id": 18,
+				"strength": 25.5000
+			},
+			{
+				"source_id": 1,
+				"target_id": 20,
+				"strength": 8.5000
+			},
+			{
+				"source_id": 2,
+				"target_id": 3,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 2,
+				"target_id": 4,
+				"strength": 8.5000
+			},
+			{
+				"source_id": 2,
+				"target_id": 5,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 2,
+				"target_id": 6,
+				"strength": 6.0000
+			},
+			{
+				"source_id": 2,
+				"target_id": 7,
+				"strength": 8.5000
+			},
+			{
+				"source_id": 2,
+				"target_id": 9,
+				"strength": 10.0000
+			},
+			{
+				"source_id": 2,
+				"target_id": 10,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 2,
+				"target_id": 11,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 2,
+				"target_id": 12,
+				"strength": 9.0000
+			},
+			{
+				"source_id": 2,
+				"target_id": 13,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 2,
+				"target_id": 14,
+				"strength": 2.5000
+			},
+			{
+				"source_id": 2,
+				"target_id": 15,
+				"strength": 1.5000
+			},
+			{
+				"source_id": 2,
+				"target_id": 18,
+				"strength": 25.0000
+			},
+			{
+				"source_id": 2,
+				"target_id": 19,
+				"strength": 9.0000
+			},
+			{
+				"source_id": 2,
+				"target_id": 20,
+				"strength": 6.5000
+			},
+			{
+				"source_id": 3,
+				"target_id": 5,
+				"strength": 4.3333
+			},
+			{
+				"source_id": 3,
+				"target_id": 6,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 3,
+				"target_id": 8,
+				"strength": 3.1667
+			},
+			{
+				"source_id": 3,
+				"target_id": 11,
+				"strength": 2.0000
+			},
+			{
+				"source_id": 3,
+				"target_id": 12,
+				"strength": 3.3333
+			},
+			{
+				"source_id": 3,
+				"target_id": 13,
+				"strength": 0.6667
+			},
+			{
+				"source_id": 3,
+				"target_id": 14,
+				"strength": 9.3333
+			},
+			{
+				"source_id": 3,
+				"target_id": 15,
+				"strength": 7.3333
+			},
+			{
+				"source_id": 3,
+				"target_id": 16,
+				"strength": 2.8333
+			},
+			{
+				"source_id": 3,
+				"target_id": 17,
+				"strength": 0.8333
+			},
+			{
+				"source_id": 3,
+				"target_id": 18,
+				"strength": 40.1667
+			},
+			{
+				"source_id": 3,
+				"target_id": 19,
+				"strength": 12.8333
+			},
+			{
+				"source_id": 3,
+				"target_id": 20,
+				"strength": 13.1667
+			},
+			{
+				"source_id": 4,
+				"target_id": 6,
+				"strength": 3.0000
+			},
+			{
+				"source_id": 4,
+				"target_id": 7,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 4,
+				"target_id": 9,
+				"strength": 3.3333
+			},
+			{
+				"source_id": 4,
+				"target_id": 10,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 4,
+				"target_id": 11,
+				"strength": 1.8333
+			},
+			{
+				"source_id": 4,
+				"target_id": 12,
+				"strength": 2.8333
+			},
+			{
+				"source_id": 4,
+				"target_id": 14,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 4,
+				"target_id": 16,
+				"strength": 7.3333
+			},
+			{
+				"source_id": 4,
+				"target_id": 18,
+				"strength": 0.8333
+			},
+			{
+				"source_id": 4,
+				"target_id": 19,
+				"strength": 2.3333
+			},
+			{
+				"source_id": 4,
+				"target_id": 20,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 5,
+				"target_id": 6,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 5,
+				"target_id": 12,
+				"strength": 0.3333
+			},
+			{
+				"source_id": 5,
+				"target_id": 14,
+				"strength": 9.6667
+			},
+			{
+				"source_id": 5,
+				"target_id": 15,
+				"strength": 3.6667
+			},
+			{
+				"source_id": 5,
+				"target_id": 16,
+				"strength": 3.5000
+			},
+			{
+				"source_id": 5,
+				"target_id": 17,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 5,
+				"target_id": 18,
+				"strength": 16.6667
+			},
+			{
+				"source_id": 5,
+				"target_id": 19,
+				"strength": 8.5000
+			},
+			{
+				"source_id": 5,
+				"target_id": 20,
+				"strength": 1.3333
+			},
+			{
+				"source_id": 6,
+				"target_id": 8,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 6,
+				"target_id": 9,
+				"strength": 2.5000
+			},
+			{
+				"source_id": 6,
+				"target_id": 10,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 6,
+				"target_id": 12,
+				"strength": 12.8333
+			},
+			{
+				"source_id": 6,
+				"target_id": 14,
+				"strength": 3.5000
+			},
+			{
+				"source_id": 6,
+				"target_id": 15,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 6,
+				"target_id": 16,
+				"strength": 9.3333
+			},
+			{
+				"source_id": 6,
+				"target_id": 17,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 6,
+				"target_id": 18,
+				"strength": 38.3333
+			},
+			{
+				"source_id": 6,
+				"target_id": 19,
+				"strength": 37.0000
+			},
+			{
+				"source_id": 6,
+				"target_id": 20,
+				"strength": 14.0000
+			},
+			{
+				"source_id": 7,
+				"target_id": 9,
+				"strength": 2.5000
+			},
+			{
+				"source_id": 7,
+				"target_id": 10,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 7,
+				"target_id": 11,
+				"strength": 3.5000
+			},
+			{
+				"source_id": 7,
+				"target_id": 12,
+				"strength": 28.5000
+			},
+			{
+				"source_id": 7,
+				"target_id": 13,
+				"strength": 32.0000
+			},
+			{
+				"source_id": 7,
+				"target_id": 16,
+				"strength": 5.5000
+			},
+			{
+				"source_id": 7,
+				"target_id": 18,
+				"strength": 18.0000
+			},
+			{
+				"source_id": 7,
+				"target_id": 19,
+				"strength": 5.0000
+			},
+			{
+				"source_id": 7,
+				"target_id": 20,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 8,
+				"target_id": 9,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 8,
+				"target_id": 12,
+				"strength": 3.5000
+			},
+			{
+				"source_id": 8,
+				"target_id": 13,
+				"strength": 1.3333
+			},
+			{
+				"source_id": 8,
+				"target_id": 14,
+				"strength": 2.3333
+			},
+			{
+				"source_id": 8,
+				"target_id": 16,
+				"strength": 2.5000
+			},
+			{
+				"source_id": 8,
+				"target_id": 18,
+				"strength": 27.3333
+			},
+			{
+				"source_id": 8,
+				"target_id": 19,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 8,
+				"target_id": 20,
+				"strength": 6.3333
+			},
+			{
+				"source_id": 9,
+				"target_id": 11,
+				"strength": 1.3333
+			},
+			{
+				"source_id": 9,
+				"target_id": 12,
+				"strength": 1.8333
+			},
+			{
+				"source_id": 9,
+				"target_id": 16,
+				"strength": 1.8333
+			},
+			{
+				"source_id": 9,
+				"target_id": 18,
+				"strength": 12.6667
+			},
+			{
+				"source_id": 9,
+				"target_id": 19,
+				"strength": 2.5000
+			},
+			{
+				"source_id": 9,
+				"target_id": 20,
+				"strength": 2.0000
+			},
+			{
+				"source_id": 10,
+				"target_id": 12,
+				"strength": 1.5000
+			},
+			{
+				"source_id": 10,
+				"target_id": 16,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 10,
+				"target_id": 17,
+				"strength": 1.0000
+			},
+			{
+				"source_id": 10,
+				"target_id": 18,
+				"strength": 14.0000
+			},
+			{
+				"source_id": 10,
+				"target_id": 20,
+				"strength": 20.5000
+			},
+			{
+				"source_id": 11,
+				"target_id": 12,
+				"strength": 6.5000
+			},
+			{
+				"source_id": 11,
+				"target_id": 13,
+				"strength": 2.0000
+			},
+			{
+				"source_id": 11,
+				"target_id": 17,
+				"strength": 2.0000
+			},
+			{
+				"source_id": 11,
+				"target_id": 18,
+				"strength": 15.8333
+			},
+			{
+				"source_id": 11,
+				"target_id": 19,
+				"strength": 7.5000
+			},
+			{
+				"source_id": 11,
+				"target_id": 20,
+				"strength": 4.5000
+			},
+			{
+				"source_id": 12,
+				"target_id": 14,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 12,
+				"target_id": 15,
+				"strength": 1.8333
+			},
+			{
+				"source_id": 12,
+				"target_id": 16,
+				"strength": 8.5000
+			},
+			{
+				"source_id": 12,
+				"target_id": 17,
+				"strength": 6.5000
+			},
+			{
+				"source_id": 12,
+				"target_id": 18,
+				"strength": 73.1667
+			},
+			{
+				"source_id": 12,
+				"target_id": 19,
+				"strength": 10.8333
+			},
+			{
+				"source_id": 12,
+				"target_id": 20,
+				"strength": 38.5000
+			},
+			{
+				"source_id": 13,
+				"target_id": 15,
+				"strength": 0.8333
+			},
+			{
+				"source_id": 13,
+				"target_id": 16,
+				"strength": 2.5000
+			},
+			{
+				"source_id": 13,
+				"target_id": 18,
+				"strength": 14.3333
+			},
+			{
+				"source_id": 13,
+				"target_id": 19,
+				"strength": 2.5000
+			},
+			{
+				"source_id": 13,
+				"target_id": 20,
+				"strength": 6.3333
+			},
+			{
+				"source_id": 14,
+				"target_id": 16,
+				"strength": 6.1667
+			},
+			{
+				"source_id": 14,
+				"target_id": 17,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 14,
+				"target_id": 18,
+				"strength": 43.6667
+			},
+			{
+				"source_id": 14,
+				"target_id": 19,
+				"strength": 48.3333
+			},
+			{
+				"source_id": 14,
+				"target_id": 20,
+				"strength": 4.0000
+			},
+			{
+				"source_id": 15,
+				"target_id": 16,
+				"strength": 3.1667
+			},
+			{
+				"source_id": 15,
+				"target_id": 17,
+				"strength": 0.3333
+			},
+			{
+				"source_id": 15,
+				"target_id": 18,
+				"strength": 25.8333
+			},
+			{
+				"source_id": 15,
+				"target_id": 19,
+				"strength": 15.6667
+			},
+			{
+				"source_id": 15,
+				"target_id": 20,
+				"strength": 6.3333
+			},
+			{
+				"source_id": 16,
+				"target_id": 17,
+				"strength": 3.5000
+			},
+			{
+				"source_id": 16,
+				"target_id": 18,
+				"strength": 46.3333
+			},
+			{
+				"source_id": 16,
+				"target_id": 19,
+				"strength": 18.0000
+			},
+			{
+				"source_id": 16,
+				"target_id": 20,
+				"strength": 26.0000
+			},
+			{
+				"source_id": 17,
+				"target_id": 18,
+				"strength": 19.3333
+			},
+			{
+				"source_id": 17,
+				"target_id": 19,
+				"strength": 3.5000
+			},
+			{
+				"source_id": 17,
+				"target_id": 20,
+				"strength": 7.0000
+			},
+			{
+				"source_id": 18,
+				"target_id": 19,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 18,
+				"target_id": 20,
+				"strength": 0.5000
+			},
+			{
+				"source_id": 19,
+				"target_id": 20,
+				"strength": 1.0000
+			}
+		]
+	}
+}
